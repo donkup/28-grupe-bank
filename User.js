@@ -21,5 +21,4 @@ User.create = async (connection, userFirstname, userLastname) => {
 }
 
 
-
 module.exports = User;

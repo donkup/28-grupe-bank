@@ -10,7 +10,6 @@ db.init = async ({ database, host, user }) => {
 
     return connection;
 }
-
 db.createDatabase = async ({ database, host, user }) => {
     host = host ? host : 'localhost';
     user = user ? user : 'root';

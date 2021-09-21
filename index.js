@@ -18,7 +18,6 @@ app.init = async () => {
     const user1 = await User.create(conn, 'Vardenis', 'Pavardenis');
     console.log(user1);
 
-
 }
 
 app.init();
