@@ -10,3 +10,4 @@ Bankas
 
 - banko istorija negali būti trinama:
   --- turi matytis visi atlikti pavedimai, įskaitymai ir išskaitymai kur matyti kas, kada ir kokią operaciją atliko;
+-
