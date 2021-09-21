@@ -17,6 +17,9 @@ User.create = async (connection, userFirstname, userLastname) => {
                 VALUES \
                     (NULL, "' + userFirstname + '", "' + userLastname + '")';
     const [rows] = await connection.execute(sql);
+    const vartotojoId = rows.insertId;
+
+    await Account.create(connection, vartotojoId);
     return `Banko klientas ${userFirstname} ${userLastname} buvo sekmingai sukurtas!`;
 }
 
