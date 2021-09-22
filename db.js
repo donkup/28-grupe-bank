@@ -58,7 +58,7 @@ db.createTableAccounts = async (connection) => {
     try {
         const sql = 'CREATE TABLE IF NOT EXISTS `accounts` (\
                         `id` int(10) NOT NULL AUTO_INCREMENT,\
-                        `balance` int(10) NOT NULL,\
+                        `balance` float(12,2) NOT NULL,\
                         `owners_id` int(10) NOT NULL,\
                     PRIMARY KEY(`id`),\
                     KEY `owners_id` (`owners_id`)\

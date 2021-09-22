@@ -32,7 +32,7 @@ app.init = async () => {
 
     await Account.AddMoneyByAccountId(conn, 3, 1500)
 
-    await Account.AddMoneyByAccountId(conn, 3, 500)
+    await Account.AddMoneyByAccountId(conn, 3, 500.52)
 
     console.log('-----------------------');
 
