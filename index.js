@@ -21,17 +21,22 @@ app.init = async () => {
     console.log(user2);
     const user3 = await User.create(conn, 'Mike', 'Pukuotas');
     console.log(user3);
-
+    console.log('-----------------------');
     // let accountUser = await Account.create(conn, 1)
     // console.log(accountUser);
 
 
-    let addToAccount1 = await Account.AdditionByAccountId(conn, 1, 500)
-    console.log(addToAccount1);
-    let addToAccount2 = await Account.AdditionByAccountId(conn, 2, 5500)
-    console.log(addToAccount2);
-    let addToAccount3 = await Account.AdditionByAccountId(conn, 3, 1500)
-    console.log(addToAccount3);
+    await Account.AddMoneyByAccountId(conn, 1, 500)
+
+    await Account.AddMoneyByAccountId(conn, 2, 5500)
+
+    await Account.AddMoneyByAccountId(conn, 3, 1500)
+
+    await Account.AddMoneyByAccountId(conn, 3, 500)
+
+    console.log('-----------------------');
+
+    await Account.TakeMoneyById(conn, 3, 2000)
 
 
 }
