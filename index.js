@@ -22,6 +22,10 @@ app.init = async () => {
     console.log(accountUser);
 
 
+    let addToAccount = await Account.AdditionByAccountId(conn, 1, 500)
+    console.log(addToAccount);
+
+
 }
 
 app.init();
