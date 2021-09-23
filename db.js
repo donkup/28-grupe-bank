@@ -10,6 +10,7 @@ db.init = async ({ database, host, user }) => {
 
     return connection;
 }
+
 db.createDatabase = async ({ database, host, user }) => {
     host = host ? host : 'localhost';
     user = user ? user : 'root';
@@ -44,11 +45,12 @@ db.createTableUsers = async (connection) => {
                         `id` int(10) NOT NULL AUTO_INCREMENT,\
                         `firstname` char(20) COLLATE utf8_swedish_ci NOT NULL,\
                         `lastname` char(20) COLLATE utf8_swedish_ci NOT NULL,\
+                        `active` char(5) COLLATE utf8_swedish_ci NOT NULL DEFAULT "TRUE",\
                         PRIMARY KEY(`id`)\
                     ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_swedish_ci';
         await connection.execute(sql);
     } catch (error) {
-        console.log('Nepavyko sukurti autoriu lenteles');
+        console.log('Nepavyko sukurti vartotoju lenteles');
         console.log(error);
         return error;
     }
@@ -58,17 +60,17 @@ db.createTableAccounts = async (connection) => {
     try {
         const sql = 'CREATE TABLE IF NOT EXISTS `accounts` (\
                         `id` int(10) NOT NULL AUTO_INCREMENT,\
-                        `balance` float(12,2) NOT NULL,\
-                        `owners_id` int(10) NOT NULL,\
+                        `user_id` int(10) NOT NULL,\
+                        `balance` float(12,2) DEFAULT 0 NOT NULL,\`active` char(5) COLLATE utf8_swedish_ci NOT NULL DEFAULT "TRUE",\
                     PRIMARY KEY(`id`),\
-                    KEY `owners_id` (`owners_id`)\
+                    KEY `user_id` (`user_id`)\
                     ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_swedish_ci';
         await connection.execute(sql);
         // uzdedam apsauga nuo istrynimo
-        const sql2 = 'ALTER TABLE `accounts` ADD FOREIGN KEY (`owners_id`) REFERENCES `users`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;'
+        const sql2 = 'ALTER TABLE `accounts` ADD FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;'
         await connection.execute(sql2);
     } catch (error) {
-        console.log('Nepavyko sukurti autoriu lenteles');
+        console.log('Nepavyko sukurti saskaitu lenteles');
         console.log(error);
         return error;
     }
